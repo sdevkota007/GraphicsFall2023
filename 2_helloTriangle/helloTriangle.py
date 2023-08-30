@@ -37,7 +37,9 @@ vertices = np.array(vertices, dtype=np.float32)
 
 size_position = 3       # x, y, z
 size_color = 3          # r, g, b
-stride = (size_position + size_color) * 4           # stride is the number of bytes between each vertex
+stride = (size_position + size_color) * 4     # stride is the number of bytes between each vertex
+offset_position = 0                           # offset of the position data
+offset_color = size_position * 4              # offset of the color data. Color data starts after 3 floats (12 bytes) of position data
 n_vertices = len(vertices) // (size_position + size_color)   # number of vertices
 
 
@@ -61,22 +63,22 @@ glBufferData(GL_ARRAY_BUFFER,
 # For the position attribute
 position_loc = glGetAttribLocation(shader, "position")      # Get the index of the position attribute in the shader
 glVertexAttribPointer(index=position_loc,           # Now we specify how the data is stored in the VBO for the position attribute
-                      size=3,                       # Specify the number of components per attribute: 3 for position (x, y, z)
+                      size=size_position,           # Specify the number of components per attribute: 3 for position (x, y, z)
                       type=GL_FLOAT,                # Specify the type of the components
                       normalized=GL_FALSE,          # Specify if we want the data to be normalized
-                      stride=24,                    # Specify the stride (number of bytes between each vertex)
-                      pointer=ctypes.c_void_p(0))   # Specify the starting point (in bytes) for the position data
+                      stride=stride,                # Specify the stride (number of bytes between each vertex)
+                      pointer=ctypes.c_void_p(offset_position))   # Specify the starting point (in bytes) for the position data
 # Enable the position attribute using its index
 glEnableVertexAttribArray(position_loc)
 
 # For the color attribute
 color_loc = glGetAttribLocation(shader, "color")    # Get the index of the color attribute in the shader
 glVertexAttribPointer(color_loc,                    # Now we specify how the data is stored in the VBO for the color attribute
-                      3,
-                      GL_FLOAT,
-                      GL_FALSE,
-                      24,
-                      ctypes.c_void_p(12))          # The starting point for the color data is 12 bytes after the starting point for the position data
+                      size=size_color,
+                      type=GL_FLOAT,
+                      normalized=GL_FALSE,
+                      stride=stride,
+                      pointer=ctypes.c_void_p(offset_color))   # The starting point for the color data (in bytes)
 
 # Enable the vertex attribute (color) using its index
 glEnableVertexAttribArray(color_loc)
@@ -95,11 +97,18 @@ while draw:
     # Draw the triangle
     glUseProgram(shader)                # Use the shader program
     glBindVertexArray(vao)              # Bind the VAO. That is, make it the active one.
-    glDrawArrays(GL_TRIANGLES, 0, 3)
+    glDrawArrays(GL_TRIANGLES,
+                 0,
+                 count=n_vertices)      # Draw the triangle
 
     # Refresh the display to show what's been drawn
     pg.display.flip()
 
+
+# Cleanup
+glDeleteVertexArrays(1, [vao])
+glDeleteBuffers(1, [vbo])
+glDeleteProgram(shader)
 
 pg.quit()   # Close the graphics window
 quit()      # Exit the program
