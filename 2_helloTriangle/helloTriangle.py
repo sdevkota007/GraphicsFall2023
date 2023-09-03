@@ -22,7 +22,9 @@ glClearColor(0.3, 0.4, 0.5, 1.0)
 
 
 # Write our shaders. We will write our vertex shader and fragment shader in a different file
+# Let's compile our shaders here and use them.
 shader = shaderLoader.compile_shader("shaders/vert.glsl", "shaders/frag.glsl")
+glUseProgram(shader)
 
 
 # Lets setup our scene geometry. Our scene has just a single triangle for now.
