@@ -99,7 +99,7 @@ while draw:
     glBindVertexArray(vao)              # Bind the VAO. That is, make it the active one.
     glDrawArrays(GL_TRIANGLES,
                  0,
-                 count=n_vertices)      # Draw the triangle
+                 n_vertices)      # Draw the triangle
 
     # Refresh the display to show what's been drawn
     pg.display.flip()
