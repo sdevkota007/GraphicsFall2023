@@ -10,6 +10,6 @@ uniform float center;
 
 void main(){
     vec3 pos = position-center;
-    gl_Position = vec4(position * scale, 1.0);
+    gl_Position = vec4(pos * scale, 1.0);
     fragColor = normalize(normal);
 }
