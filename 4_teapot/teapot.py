@@ -104,7 +104,8 @@ glUniform1f(scale_loc, scale)                   # Set the value of the uniform v
 
 center_loc = glGetUniformLocation(shader, "center")   # Get the location of the uniform variable "center" in the shader
 glUniform3fv(center_loc, 1, center)    # Set the value of the uniform variable "center" in the shader
-
+# or
+# glUniform3f(center_loc, center[0], center[1], center[2])
 
 # Run a loop to keep the program running
 draw = True

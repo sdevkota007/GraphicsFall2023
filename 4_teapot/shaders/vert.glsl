@@ -6,7 +6,7 @@ in vec3 normal; // Attribute
 out vec3 fragColor;
 
 uniform float scale;
-uniform float center;
+uniform vec3 center;
 
 void main(){
     vec3 pos = position-center;
