@@ -38,9 +38,12 @@ class ColorPicker:
 
     def pick_color(self):
         color_rgb, color_hex = tkcolorchooser.askcolor()  # Get the selected color
-        self.color_norm = tuple([i/255 for i in color_rgb])
+        if color_rgb is not None:
+            self.color_255 = tuple([int(i) for i in color_rgb])
+            self.color_hex = color_hex
+            self.color_norm = tuple([i/255 for i in color_rgb])
 
-        self.color_button.config(background=color_hex)  # Update button color
+            self.color_button.config(background=color_hex)  # Update button color
         self.root.update_idletasks()
         self.root.update()
 
