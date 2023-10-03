@@ -43,8 +43,9 @@ view_mat  = pyrr.matrix44.create_look_at(eye, target, up)
 projection_mat = pyrr.matrix44.create_perspective_projection_matrix(fov, aspect, near, far)
 
 # light and material properties
-light_pos = np.array([2, 2, 2, None], dtype=np.float32)
 material_color = (1.0, 0.1, 0.1)
+light_pos = np.array([2, 2, 2, None], dtype=np.float32)
+# last component is for light type (0: directional, 1: point) which is changed by radio button
 # *************************************************************************
 
 
