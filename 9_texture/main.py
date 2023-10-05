@@ -107,9 +107,19 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSI
 
 
 
-# Setup texture sampler in the fragment shader
+# ***** Attach the texture object to the active texture unit (GL_TEXTURE0)   *****
+# We can explicitly assign texture unit 0 to the texture object.
+# This is optional since we have only one texture object. It is attached to texture unit 0 (GL_TEXTURE0) by default,
+# GPU's may have 16, 32, or even more texture units.
+glActiveTexture(GL_TEXTURE0)
+glBindTexture(GL_TEXTURE_2D, texture_id)
+
+
+# ***** Attach the uniform sampler variable "tex" in the shader to the texture unit 0.  *****
+# We can explicitly tell the shader that the sampler "tex" corresponds to texture unit 0.
+# This is optional since we are using only one texture unit. It is attached to texture unit 0 (GL_TEXTURE0) by default,
 glUseProgram(shaderProgram.shader)    # Use the shader program
-glUniform1i(glGetUniformLocation(shaderProgram.shader, "textureSampler"), 0)    # Tell shader that textureSampler in the frag shader corresponds to texture unit 0, which is the GL_TEXTURE0 unit we activated above.
+glUniform1i(glGetUniformLocation(shaderProgram.shader, "tex"), 0)    # Here, 0 indicates texture unit 0.
 
 
 # Run a loop to keep the program running
@@ -124,12 +134,9 @@ while draw:
 
     glUseProgram(shaderProgram.shader)  # Use the shader program
 
-    # Activate texture unit 0. This is the default, but it is good practice to explicitly set it.
-    # GPU's may have 16, 32, or even more texture units. Can be done only once outside the game loop since we are using only one texture unit.
-    glActiveTexture(GL_TEXTURE0)
 
-    # Bind the texture object, bind the VAO, and draw the triangle.
-    glBindTexture(GL_TEXTURE_2D, texture_id)
+
+    # bind the VAO, and draw the triangle.
     glBindVertexArray(vao)
     glDrawArrays(GL_TRIANGLES,
                  0,
