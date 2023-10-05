@@ -115,7 +115,6 @@ while (draw):
 
     glClear(GL_COLOR_BUFFER_BIT)
 
-
     glUseProgram(shaderProgram.shader)
 
     # Activate texture unit 0. This is the default, but it is good practice to explicitly set it.
