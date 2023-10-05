@@ -92,20 +92,23 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)    # Set texture filtering parameters
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
 
-glTexImage2D(GL_TEXTURE_2D,             # target
-             0,                  # level. This indicates the level of detail. Level 0 is the base image level and level n is the nth mipmap reduction level. We don't want to use mipmapping for now, so we set it to 0.
-             GL_RGB,                # internal format. RGB is used because the image is in RGB format
-             img_width,              # width of the image
-             img_height,             # height of the image
-             0,               # border. This indicates the width of the border of the image. We don't want any border, so we set it to 0.
-             GL_RGB,                 # format. This indicates the format of the pixel data. RGB is used because the image is in RGB format
-             GL_UNSIGNED_BYTE,       # type. This indicates the data type of the pixel data. GL_UNSIGNED_BYTE is used because the image is in unsigned byte format
-             img_data)              # pixels. This indicates the image data
+# Upload the image data to the GPU
+glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img_data)
+# Parameters:
+# GL_TEXTURE_2D is the target of the active texture unit.
+# 0: This indicates the level of detail. Level 0 is the base image level and level n is the nth mipmap reduction level. We don't want to use mipmapping for now, so we set it to 0.
+# GL_RGB: The internal format is RGB because the image is in RGB format.
+# img_width: The width of the image.
+# img_height: The height of the image.
+# 0: This indicates the width of the border of the image. We don't want any border, so we set it to 0.
+# GL_RGB: This indicates the format of the pixel data. RGB is used because the image is in RGB format.
+# GL_UNSIGNED_BYTE: This indicates the data type of the pixel data. GL_UNSIGNED_BYTE is used because the image is in unsigned byte format.
+# img_data: The image data.
+
 
 
 # Setup texture sampler in the fragment shader
 glUseProgram(shaderProgram.shader)    # Use the shader program
-glActiveTexture(GL_TEXTURE0)    # Activate texture unit 0. This is the default, but it is good practice to explicitly set it. GPU's may have 16, 32, or even more texture units.
 glUniform1i(glGetUniformLocation(shaderProgram.shader, "textureSampler"), 0)    # Tell shader that textureSampler in the frag shader corresponds to texture unit 0, which is the GL_TEXTURE0 unit we activated above.
 
 
@@ -120,6 +123,10 @@ while draw:
     glClear(GL_COLOR_BUFFER_BIT)
 
     glUseProgram(shaderProgram.shader)  # Use the shader program
+
+    # Activate texture unit 0. This is the default, but it is good practice to explicitly set it.
+    # GPU's may have 16, 32, or even more texture units. Can be done only once outside the game loop since we are using only one texture unit.
+    glActiveTexture(GL_TEXTURE0)
 
     # Bind the texture object, bind the VAO, and draw the triangle.
     glBindTexture(GL_TEXTURE_2D, texture_id)
