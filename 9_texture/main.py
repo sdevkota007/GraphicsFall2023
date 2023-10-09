@@ -110,6 +110,7 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSI
 # ***** Attach the texture object to the active texture unit (GL_TEXTURE0)   *****
 # We can explicitly assign texture unit 0 to the texture object.
 # This is optional since we have only one texture object. It is attached to texture unit 0 (GL_TEXTURE0) by default,
+# but a wise man once said, "Explicit is better than implicit."
 # GPU's may have 16, 32, or even more texture units.
 glActiveTexture(GL_TEXTURE0)
 glBindTexture(GL_TEXTURE_2D, texture_id)
@@ -118,6 +119,7 @@ glBindTexture(GL_TEXTURE_2D, texture_id)
 # ***** Attach the uniform sampler variable "tex" in the shader to the texture unit 0.  *****
 # We can explicitly tell the shader that the sampler "tex" corresponds to texture unit 0.
 # This is optional since we are using only one texture unit. It is attached to texture unit 0 (GL_TEXTURE0) by default,
+# but a wise man once said, "Explicit is better than implicit."
 glUseProgram(shaderProgram.shader)    # Use the shader program
 glUniform1i(glGetUniformLocation(shaderProgram.shader, "tex"), 0)    # Here, 0 indicates texture unit 0.
 
