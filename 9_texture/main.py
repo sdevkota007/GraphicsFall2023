@@ -1,7 +1,7 @@
 import pygame as pg
 from OpenGL.GL import *
 import numpy as np
-import shaderLoaderV2
+import shaderLoaderV3
 from utils import load_image
 
 # Initialize pygame
@@ -23,7 +23,7 @@ glClearColor(0.3, 0.4, 0.5, 1.0)
 
 
 # Write our shaders. We will write our vertex shader and fragment shader in a different file
-shaderProgram = shaderLoaderV2.ShaderProgram("shaders/vert.glsl", "shaders/frag.glsl")
+shaderProgram = shaderLoaderV3.ShaderProgram("shaders/vert.glsl", "shaders/frag.glsl")
 glUseProgram(shaderProgram.shader)    # Use the shader program
 
 
@@ -107,6 +107,19 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSI
 
 
 
+
+# ***** Attach the uniform sampler variable "tex" in the shader to the texture unit 0.  *****
+# We can explicitly tell the shader that the sampler "tex" corresponds to texture unit 0.
+# This is optional since we are using only one texture unit. It is attached to texture unit 0 (GL_TEXTURE0) by default,
+# but a wise man once said, "Explicit is better than implicit."
+shaderProgram["tex"] = 0   # Okay this might be confusing. Here 0 indicates texture unit 0. Note that "tex" is a sampler variable in the fragment shader. It is not an integer.
+# instead of the line above, we could have used the following lines:
+# glUseProgram(shaderProgram.shader)
+# tex_loc = glGetUniformLocation(shaderProgram.shader, "tex")
+# glUniform1i(tex_loc, 0)
+
+
+
 # ***** Attach the texture object to the active texture unit (GL_TEXTURE0)   *****
 # We can explicitly assign texture unit 0 to the texture object.
 # This is optional since we have only one texture object. It is attached to texture unit 0 (GL_TEXTURE0) by default,
@@ -116,12 +129,8 @@ glActiveTexture(GL_TEXTURE0)
 glBindTexture(GL_TEXTURE_2D, texture_id)
 
 
-# ***** Attach the uniform sampler variable "tex" in the shader to the texture unit 0.  *****
-# We can explicitly tell the shader that the sampler "tex" corresponds to texture unit 0.
-# This is optional since we are using only one texture unit. It is attached to texture unit 0 (GL_TEXTURE0) by default,
-# but a wise man once said, "Explicit is better than implicit."
-glUseProgram(shaderProgram.shader)    # Use the shader program
-glUniform1i(glGetUniformLocation(shaderProgram.shader, "tex"), 0)    # Here, 0 indicates texture unit 0.
+
+
 
 
 # Run a loop to keep the program running
