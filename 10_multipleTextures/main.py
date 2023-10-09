@@ -1,7 +1,7 @@
 import pygame as pg
 from OpenGL.GL import *
 import numpy as np
-import shaderLoaderV2  # Assuming you have a ShaderLoader module
+import shaderLoaderV3  # Assuming you have a ShaderLoader module
 from utils import load_image
 
 # Initialize pygame and create a window.
@@ -10,7 +10,7 @@ pg.display.set_mode((640, 480), pg.OPENGL | pg.DOUBLEBUF)
 glClearColor(0.3, 0.4, 0.5, 1)
 
 # Load the shaders.
-shaderProgram = shaderLoaderV2.ShaderProgram("shaders/vert.glsl", "shaders/frag.glsl")
+shaderProgram = shaderLoaderV3.ShaderProgram("shaders/vert.glsl", "shaders/frag.glsl")
 
 triangle_vertices = (
             # Position          # texture       # Normal
@@ -101,9 +101,15 @@ img_data, img_width, img_height = load_image("objects/img.png")
 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img_data)
 
 
-# Set the texture units for the fragment shader. This is done only once.
-glUseProgram(shaderProgram.shader)
-glUniform1i(glGetUniformLocation(shaderProgram.shader, "textureSampler"), 0)    # Set the texture sampler in the fragment shader to texture unit 0, which is the GL_TEXTURE0 unit we activated above.
+# ***** Attach the uniform sampler variable "tex" in the shader to the texture unit 0.  *****
+# We can explicitly tell the shader that the sampler "tex" corresponds to texture unit 0.
+# This is optional since we are using only one texture unit. It is attached to texture unit 0 (GL_TEXTURE0) by default,
+# but a wise man once said, "Explicit is better than implicit."
+shaderProgram["tex"] = 0   # Okay this might be confusing. Here 0 indicates texture unit 0. Note that "tex" is a sampler variable in the fragment shader. It is not an integer.
+# instead of the line above, we could have used the following lines:
+# glUseProgram(shaderProgram.shader)
+# tex_loc = glGetUniformLocation(shaderProgram.shader, "tex")
+# glUniform1i(tex_loc, 0)
 
 
 # Set up the game loop.
@@ -121,12 +127,12 @@ while (draw):
     # GPU's may have 16, 32, or even more texture units. Can be done only once outside the game loop since we are using only one texture unit.
     glActiveTexture(GL_TEXTURE0)
 
-    # Bind the correct texture, bind the correct VAO, and draw the triangle.
+    # Bind the correct texture to the active texture unit, bind the correct VAO, and draw the triangle.
     glBindTexture(GL_TEXTURE_2D, texture1)
     glBindVertexArray(triangle_vao)
     glDrawArrays(GL_TRIANGLES, 0, len(triangle_vertices) // 6)
 
-    # Bind the correct texture, bind the correct VAO, and draw the quad.
+    # Bind the correct texture to the active texture unit, bind the correct VAO, and draw the quad.
     glBindTexture(GL_TEXTURE_2D, texture2)
     glBindVertexArray(quad_vao)
     glDrawArrays(GL_TRIANGLE_FAN, 0, len(quad_vertices) // 6)
