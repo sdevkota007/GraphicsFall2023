@@ -43,6 +43,9 @@ glBindBuffer(GL_ARRAY_BUFFER, triangle_vbo)     # Bind the buffer. That is, make
 glBufferData(GL_ARRAY_BUFFER, triangle_vertices, GL_STATIC_DRAW)    # Upload the data to the GPU.
 
 
+# we can either query the locations of the attributes in the shader like we did in our previous assignments
+# or explicitly tell the shader that the attribute "position" corresponds to location 0.
+# It is recommended to explicitly set the locations of the attributes in the shader than querying them.
 pos_loc = 0
 texture_loc = 1
 normal_loc = 2
