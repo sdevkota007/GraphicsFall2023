@@ -64,6 +64,9 @@ glBufferData(GL_ARRAY_BUFFER, vertices.nbytes, vertices, GL_STATIC_DRAW)   # Upl
 
 
 # Define the vertex attribute configurations
+# we can either query the locations of the attributes in the shader like we did in our previous assignments
+# or explicitly tell the shader that the attribute "position" corresponds to location 0.
+# It is recommended to explicitly set the locations of the attributes in the shader than querying them.
 # Position attribute
 position_loc = 0
 glBindAttribLocation(shaderProgram.shader, position_loc, "position")
