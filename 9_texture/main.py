@@ -85,7 +85,7 @@ glBindAttribLocation(shaderProgram.shader, color_loc, "color")
 glVertexAttribPointer(color_loc, size_color, GL_FLOAT, GL_FALSE, stride, ctypes.c_void_p(offset_color))
 glEnableVertexAttribArray(color_loc)
 
-img_data, img_width, img_height = load_image("objects/img.png", flip=True)
+img_data, img_width, img_height = load_image("images/img.png", flip=True)
 
 # Create a texture object
 texture_id = glGenTextures(1)
