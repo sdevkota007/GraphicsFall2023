@@ -51,15 +51,11 @@ offset_color = (size_position + size_texture) * 4   # offset of the color data. 
 n_vertices = len(vertices) // (size_position + size_texture + size_color)  # number of vertices
 
 
-# Create a Vertex Array Object (VAO) to store the following
-#   vertex attribute configurations
-#   vertex buffer objects associated with vertex attributes
+# Create VA0 and VBO
 vao = glGenVertexArrays(1)
-glBindVertexArray(vao)                 # Bind the VAO. That is, make it the active one.
-
-# Create a Vertex Buffer Object (VBO) to store the vertex data
-vbo = glGenBuffers(1)                  # Generate one buffer and store its ID.
-glBindBuffer(GL_ARRAY_BUFFER, vbo)     # Bind the buffer. That is, make it the active one.
+glBindVertexArray(vao)
+vbo = glGenBuffers(1)
+glBindBuffer(GL_ARRAY_BUFFER, vbo)
 glBufferData(GL_ARRAY_BUFFER, vertices.nbytes, vertices, GL_STATIC_DRAW)   # Upload the data to the GPU.
 
 
@@ -115,22 +111,12 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSI
 # We can explicitly tell the shader that the sampler "tex" corresponds to texture unit 0.
 # This is optional since we are using only one texture unit. It is attached to texture unit 0 (GL_TEXTURE0) by default,
 # but a wise man once said, "Explicit is better than implicit."
-shaderProgram["tex"] = 0   # Okay this might be confusing. Here 0 indicates texture unit 0. Note that "tex" is a sampler variable in the fragment shader. It is not an integer.
+shaderProgram["tex"] = 0
+# Okay this might be confusing. Here 0 indicates texture unit 0. Note that "tex" is a sampler variable in the fragment shader. It is not an integer.
 # instead of the line above, we could have used the following lines:
 # glUseProgram(shaderProgram.shader)
 # tex_loc = glGetUniformLocation(shaderProgram.shader, "tex")
 # glUniform1i(tex_loc, 0)
-
-
-
-# ***** Attach the texture object to the active texture unit (GL_TEXTURE0)   *****
-# We can explicitly assign texture unit 0 to the texture object.
-# This is optional since we have only one texture object. It is attached to texture unit 0 (GL_TEXTURE0) by default,
-# but a wise man once said, "Explicit is better than implicit."
-# GPU's may have 16, 32, or even more texture units.
-glActiveTexture(GL_TEXTURE0)
-glBindTexture(GL_TEXTURE_2D, texture_id)
-
 
 
 
@@ -146,15 +132,26 @@ while draw:
     # Clear the screen (or clear the color buffer), and set it to the background color chosen earlier
     glClear(GL_COLOR_BUFFER_BIT)
 
+    '''
+    # ******************* Draw the object ************************
+    '''
+    # ***** Set Uniforms *****
     glUseProgram(shaderProgram.shader)  # Use the shader program
 
+    # ***** Attach the texture object to the active texture unit (GL_TEXTURE0)   *****
+    # We can explicitly assign texture unit 0 to the texture object.
+    # This is optional since we have only one texture object. It is attached to texture unit 0 (GL_TEXTURE0) by default,
+    # but a wise man once said, "Explicit is better than implicit."
+    # GPU's may have 16, 32, or even more texture units.
+    glActiveTexture(GL_TEXTURE0)
+    glBindTexture(GL_TEXTURE_2D, texture_id)
 
-
-    # bind the VAO, and draw the triangle.
+    # ***** Draw *****
     glBindVertexArray(vao)
-    glDrawArrays(GL_TRIANGLES,
-                 0,
-                 n_vertices)      # Draw the triangle
+    glDrawArrays(GL_TRIANGLES,0,n_vertices)      # Draw the triangle
+    '''
+    # *************************************************************
+    '''
 
     # Refresh the display to show what's been drawn
     pg.display.flip()
