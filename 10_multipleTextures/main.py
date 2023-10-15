@@ -108,7 +108,7 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSI
 # We can explicitly tell the shader that the sampler "tex" corresponds to texture unit 0.
 # This is optional since we are using only one texture unit. It is attached to texture unit 0 (GL_TEXTURE0) by default,
 # but a wise man once said, "Explicit is better than implicit."
-shaderProgram["tex"] = 0   # Okay this might be confusing. Here 0 indicates texture unit 0. Note that "tex" is a sampler variable in the fragment shader. It is not an integer.
+shaderProgram["textureSampler"] = 0   # Okay this might be confusing. Here 0 indicates texture unit 0. Note that "tex" is a sampler variable in the fragment shader. It is not an integer.
 # instead of the line above, we could have used the following lines:
 # glUseProgram(shaderProgram.shader)
 # tex_loc = glGetUniformLocation(shaderProgram.shader, "tex")
