@@ -16,19 +16,12 @@ def load_cubemap_texture(filenames):
     glBindTexture(GL_TEXTURE_CUBE_MAP, texture_id)
 
     # Define texture parameters
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE)
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE)
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE)
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST)
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
 
-    # instead of the following 6 lines, we can use a for loop to load the images as shown below
-    # glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB, img_posx_width, img_posx_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img_posx)
-    # glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGB, img_negx_width, img_negx_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img_negx)
-    # glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGB, img_posy_width, img_posy_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img_posy)
-    # glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGB, img_negy_width, img_negy_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img_negy)
-    # glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGB, img_posz_width, img_posz_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img_posz)
-    # glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGB, img_negz_width, img_negz_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img_negz)
 
     # Define the faces of the cubemap
     faces = [GL_TEXTURE_CUBE_MAP_POSITIVE_X, GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
@@ -39,6 +32,9 @@ def load_cubemap_texture(filenames):
     for i in range(6):
         img_data, img_w, img_h = load_image(filenames[i], format="RGB", flip=False)
         glTexImage2D(faces[i], 0, GL_RGB, img_w, img_h, 0, GL_RGB, GL_UNSIGNED_BYTE, img_data)
+
+    # Generate mipmaps
+    glGenerateMipmap(GL_TEXTURE_CUBE_MAP)
 
     # Unbind the texture
     glBindTexture(GL_TEXTURE_CUBE_MAP, 0)
@@ -95,7 +91,7 @@ shaderProgram_obj = shaderLoaderV3.ShaderProgram("shaders/obj/vert_obj.glsl", "s
 # **************************************************************************************************************
 '''
 # Lets load our objects
-obj = ObjLoader("objects/sphere.obj")
+obj = ObjLoader("objects/teapot.obj")
 
 # *********** Lets define model matrix ***********
 translation_mat = pyrr.matrix44.create_from_translation(-obj.center)
