@@ -63,6 +63,7 @@ glBufferData(GL_ARRAY_BUFFER, vertices.nbytes, vertices, GL_STATIC_DRAW)   # Upl
 # we can either query the locations of the attributes in the shader like we did in our previous assignments
 # or explicitly tell the shader that the attribute "position" corresponds to location 0.
 # It is recommended to explicitly set the locations of the attributes in the shader than querying them.
+# Notice the changes in the fragment shader.
 # Position attribute
 position_loc = 0
 glBindAttribLocation(shaderProgram.shader, position_loc, "position")
@@ -80,6 +81,7 @@ color_loc = 2
 glBindAttribLocation(shaderProgram.shader, color_loc, "color")
 glVertexAttribPointer(color_loc, size_color, GL_FLOAT, GL_FALSE, stride, ctypes.c_void_p(offset_color))
 glEnableVertexAttribArray(color_loc)
+
 
 img_data, img_width, img_height = load_image("images/img.png", flip=True)
 
@@ -136,7 +138,7 @@ while draw:
     # ******************* Draw the object ************************
     '''
     # ***** Set Uniforms *****
-    glUseProgram(shaderProgram.shader)  # Use the shader program
+    glUseProgram(shaderProgram.shader)  # Use the shader program and set the uniforms if you have any
 
     # ***** Attach the texture object to the active texture unit (GL_TEXTURE0)   *****
     # We can explicitly assign texture unit 0 to the texture object.
