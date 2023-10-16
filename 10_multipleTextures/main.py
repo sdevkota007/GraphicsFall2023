@@ -8,6 +8,7 @@ from utils import load_image
 pg.init()
 pg.display.set_mode((640, 480), pg.OPENGL | pg.DOUBLEBUF)
 glClearColor(0.3, 0.4, 0.5, 1)
+glEnable(GL_DEPTH_TEST)
 
 # Load the shaders.
 shaderProgram = shaderLoaderV3.ShaderProgram("shaders/vert.glsl", "shaders/frag.glsl")
@@ -43,9 +44,12 @@ glBindBuffer(GL_ARRAY_BUFFER, triangle_vbo)     # Bind the buffer. That is, make
 glBufferData(GL_ARRAY_BUFFER, triangle_vertices, GL_STATIC_DRAW)    # Upload the data to the GPU.
 
 
+# Define the vertex attribute configurations
 # we can either query the locations of the attributes in the shader like we did in our previous assignments
 # or explicitly tell the shader that the attribute "position" corresponds to location 0.
 # It is recommended to explicitly set the locations of the attributes in the shader than querying them.
+# Notice the changes in the fragment shader.
+# Position attribute
 pos_loc = 0
 texture_loc = 1
 normal_loc = 2
@@ -86,12 +90,12 @@ texture1 = glGenTextures(1)     # Generate one texture object and store its ID
 glBindTexture(GL_TEXTURE_2D, texture1)
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST)
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
 
 img_data, img_width, img_height = load_image("images/img2.png", flip=True)
 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSIGNED_BYTE, img_data)
-glGenerateMipmap(GL_TEXTURE_2D)
+glGenerateMipmap(GL_TEXTURE_2D)     # To Generate mipmaps. Mipmap property is set above using GL_LINEAR_MIPMAP_NEAREST
 
 
 texture2 = glGenTextures(1)     # Generate one texture object and store its ID
@@ -110,7 +114,7 @@ glGenerateMipmap(GL_TEXTURE_2D)       # To Generate mipmaps. Mipmap property is 
 # We can explicitly tell the shader that the sampler "tex" corresponds to texture unit 0.
 # This is optional since we are using only one texture unit. It is attached to texture unit 0 (GL_TEXTURE0) by default,
 # but a wise man once said, "Explicit is better than implicit."
-shaderProgram["textureSampler"] = 0   # Okay this might be confusing. Here 0 indicates texture unit 0. Note that "tex" is a sampler variable in the fragment shader. It is not an integer.
+shaderProgram["tex"] = 0   # Okay this might be confusing. Here 0 indicates texture unit 0. Note that "tex" is a sampler variable in the fragment shader. It is not an integer.
 # instead of the line above, we could have used the following lines:
 # glUseProgram(shaderProgram.shader)
 # tex_loc = glGetUniformLocation(shaderProgram.shader, "tex")
@@ -124,7 +128,9 @@ while (draw):
         if event.type == pg.QUIT:
             draw = False
 
-    glClear(GL_COLOR_BUFFER_BIT)
+    # Clear color buffer and depth buffer before drawing each frame
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+
 
     glUseProgram(shaderProgram.shader)
 
