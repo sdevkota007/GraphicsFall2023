@@ -20,6 +20,7 @@ pg.display.set_mode((width, height), pg.OPENGL | pg.DOUBLEBUF)
 # Set the background color (clear color)
 # glClearColor takes 4 arguments: red, green, blue, alpha. Each argument is a float between 0 and 1.
 glClearColor(0.3, 0.4, 0.5, 1.0)
+glEnable(GL_DEPTH_TEST)
 
 
 # Write our shaders. We will write our vertex shader and fragment shader in a different file
@@ -131,8 +132,8 @@ while draw:
         if event.type == pg.QUIT:
             draw = False
 
-    # Clear the screen (or clear the color buffer), and set it to the background color chosen earlier
-    glClear(GL_COLOR_BUFFER_BIT)
+    # Clear color buffer and depth buffer before drawing each frame
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
     '''
     # ******************* Draw the object ************************
