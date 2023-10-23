@@ -1,11 +1,11 @@
-#version 330 core
+#version 420 core
 
 in vec3 fragColor;
 in vec2 fragUV;
 
 out vec4 outColor;
 
-uniform sampler2D tex;
+layout (binding=0) uniform sampler2D tex;
 
 void main(){
     vec3 materialColor = texture(tex, fragUV).rgb;
