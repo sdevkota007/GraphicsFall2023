@@ -120,7 +120,7 @@ glBindAttribLocation(shaderProgram_obj.shader, tex_coord_loc, "uv")
 glVertexAttribPointer(tex_coord_loc, obj.size_texture, GL_FLOAT, GL_FALSE, obj.stride, ctypes.c_void_p(obj.offset_texture))
 glEnableVertexAttribArray(tex_coord_loc)
 
-normal_loc = 1
+normal_loc = 2
 glBindAttribLocation(shaderProgram_obj.shader, normal_loc, "normal")
 glVertexAttribPointer(normal_loc, obj.size_normal, GL_FLOAT, GL_FALSE, obj.stride, ctypes.c_void_p(obj.offset_normal))
 glEnableVertexAttribArray(normal_loc)

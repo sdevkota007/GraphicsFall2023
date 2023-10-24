@@ -1,6 +1,6 @@
-#version 330 core
+#version 420 core
 
-uniform samplerCube cubeMapTex;
+layout(binding=0)uniform samplerCube cubeMapTex;
 uniform mat4 invViewProjectionMatrix;
 
 in vec2 clipboxPosition;

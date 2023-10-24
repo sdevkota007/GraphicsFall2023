@@ -1,4 +1,4 @@
-#version 330 core
+#version 420 core
 
 // Attributes
 layout (location = 0) in vec2 position;    // we can also use layout to specify the location of the attribute

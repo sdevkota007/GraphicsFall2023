@@ -1,10 +1,10 @@
-#version 330 core
+#version 420 core
 
 in vec3 fragNormal;
 in vec3 fragPos;
 
 uniform vec3 eyePos;
-uniform samplerCube cubeMapTex;
+layout(binding=0)uniform samplerCube cubeMapTex;
 
 out vec4 outColor;
 
