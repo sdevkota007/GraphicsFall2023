@@ -20,6 +20,7 @@ void main(){
 
     // We know due to perspective projection, the depth is non-linear,
     // so let's linearize the depth value and change the range from [0, far] to [0, 1] for visualization
+    // This step is not necessary. It just makes the visualization easier to see.
     depth = linearize_depth(depth, near, far);
     depth = depth / far;
 
