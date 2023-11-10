@@ -3,10 +3,8 @@ from OpenGL.GL import *
 import numpy as np
 import shaderLoaderV4
 from objLoaderV4 import ObjLoader
-from utils import load_image
 from guiV3 import SimpleGUI
 import pyrr
-import os
 
 def upload_and_configure_attributes(object, shader=None):
     # VAO and VBO
