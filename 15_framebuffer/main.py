@@ -17,16 +17,10 @@ def upload_and_configure_attributes(object):
     glBufferData(GL_ARRAY_BUFFER, object.vertices.nbytes, object.vertices, GL_STATIC_DRAW)
 
     # Define the vertex attribute configurations
-    # we can either query the locations of the attributes in the shader like we did in our previous assignments
-    # or explicitly tell the shader that the attribute "position" corresponds to location 0.
-    # It is recommended to explicitly set the locations of the attributes in the shader than querying them.
     # Position attribute
     position_loc = 0
     tex_coord_loc = 1
     normal_loc = 2
-    # glBindAttribLocation(shader, position_loc, "position")
-    # glBindAttribLocation(shader, tex_coord_loc, "uv")
-    # glBindAttribLocation(shader, normal_loc, "normal")
 
     glVertexAttribPointer(position_loc, object.size_position, GL_FLOAT, GL_FALSE, object.stride, ctypes.c_void_p(object.offset_position))
     glVertexAttribPointer(tex_coord_loc, object.size_texture, GL_FLOAT, GL_FALSE, object.stride, ctypes.c_void_p(object.offset_texture))

@@ -231,7 +231,10 @@ pg.display.set_mode((width, height), pg.OPENGL | pg.DOUBLEBUF)
 glClearColor(0.3, 0.4, 0.5, 1.0)
 glClearStencil(0)
 glEnable(GL_DEPTH_TEST)
-glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+
+# Blending is causing artifacts. Disable it for now
+# glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+# glEnable(GL_BLEND)
 
 
 # Write our shaders. We will write our vertex shader and fragment shader in a different file
@@ -343,10 +346,6 @@ camera_rotY_slider = gui.add_slider("camera Y angle", -180, 180, 0, resolution=1
 camera_rotX_slider = gui.add_slider("camera X angle", -90, 90, 0, resolution=1)
 fov_slider = gui.add_slider("fov", 25, 120, 45, resolution=1)
 
-texture_type_radio = gui.add_radio_buttons("Texture type:",
-                      options_dict={"Environment mapping": 0, "2D texture": 1, "Mix": 2},
-                      initial_option="Environment mapping")
-
 skybox_checkbox = gui.add_checkbox("Render skybox", True)
 receiver_checkbox = gui.add_checkbox("Render receiver", True)
 shadow_checkbox = gui.add_checkbox("Render Shadow", True)
@@ -422,8 +421,8 @@ while draw:
 
 
 # Cleanup
-glDeleteVertexArrays(1, [vao_obj, vao_skybox, vao_receiver])
-glDeleteBuffers(1, [vbo_obj, vbo_skybox, vao_receiver])
+glDeleteVertexArrays(2, [vao_obj, vao_skybox, vao_receiver])
+glDeleteBuffers(2, [vbo_obj, vbo_skybox, vao_receiver])
 
 glDeleteProgram(shaderProgram_obj.shader)
 glDeleteProgram(shaderProgram_skybox.shader)
