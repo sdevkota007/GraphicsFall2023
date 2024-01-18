@@ -106,9 +106,6 @@ glBindBuffer(GL_ARRAY_BUFFER, vbo_obj)
 glBufferData(GL_ARRAY_BUFFER, obj.vertices.nbytes, obj.vertices, GL_STATIC_DRAW)
 
 # Define the vertex attribute configurations
-# we can either query the locations of the attributes in the shader like we did in our previous assignments
-# or explicitly tell the shader that the attribute "position" corresponds to location 0.
-# It is recommended to explicitly set the locations of the attributes in the shader than querying them.
 # Position attribute
 position_loc = 0
 glBindAttribLocation(shaderProgram_obj.shader, position_loc, "position")
