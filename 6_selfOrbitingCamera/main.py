@@ -65,11 +65,11 @@ eye = (0,0,2)       # eye is at 2 unit distance from the origin
 target = (0,0,0)    # camera is looking at the origin of world coordinate
 up = (0,1,0)        # the up vector is the y axis
 
-fov = 60           # field of view
+fov = 45           # field of view
 near = 0.1          # near plane
 far = 100           # far plane
 
-camera_speed = 100
+camera_speed = 10
 
 view_mat = pyrr.matrix44.create_look_at(eye, target, up)
 projection_mat = pyrr.matrix44.create_perspective_projection_matrix(fov, aspect, near, far)
@@ -98,7 +98,7 @@ glBufferData(GL_ARRAY_BUFFER,
 # *********** Define the vertex attribute configurations ***********
 # This is where we specify how the data is stored in the VBO.
 # For the position attribute
-position_loc = glGetAttribLocation(shader, "position")      # Get the index of the position attribute in the shader
+position_loc = 0
 glVertexAttribPointer(index=position_loc,           # Now we specify how the data is stored in the VBO for the position attribute
                       size=size_position,           # Specify the number of components per attribute: 3 for position (x, y, z)
                       type=GL_FLOAT,                # Specify the type of the components
@@ -109,7 +109,7 @@ glVertexAttribPointer(index=position_loc,           # Now we specify how the dat
 glEnableVertexAttribArray(position_loc)
 
 # For the normal attribute
-normal_loc = glGetAttribLocation(shader, "normal")    # Get the index of the normal attribute in the shader
+normal_loc = 1
 glVertexAttribPointer(normal_loc,                    # Now we specify how the data is stored in the VBO for the normal attribute
                       size=size_normal,
                       type=GL_FLOAT,
@@ -158,7 +158,7 @@ while draw:
     glBindVertexArray(vao)              # Bind the VAO. That is, make it the active one.
     glDrawArrays(GL_TRIANGLES,
                  0,
-                 n_vertices)      # Draw the triangle
+                 n_vertices)      # Draw the object
 
     # Refresh the display to show what's been drawn
     pg.display.flip()

@@ -62,10 +62,10 @@ glBindBuffer(GL_ARRAY_BUFFER, triangle_vbo)     # Bind the buffer. That is, make
 glBufferData(GL_ARRAY_BUFFER, triangle_vertices, GL_STATIC_DRAW)    # Upload the data to the GPU.
 
 
-pos_loc = glGetAttribLocation(shader, "position")
-normal_loc = glGetAttribLocation(shader, "normal")
-glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 24, ctypes.c_void_p(0))
-glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 24, ctypes.c_void_p(12))
+pos_loc = 0
+normal_loc = 1
+glVertexAttribPointer(pos_loc, 3, GL_FLOAT, GL_FALSE, 24, ctypes.c_void_p(0))
+glVertexAttribPointer(normal_loc, 3, GL_FLOAT, GL_FALSE, 24, ctypes.c_void_p(12))
 glEnableVertexAttribArray(pos_loc)
 glEnableVertexAttribArray(normal_loc)
 
@@ -77,8 +77,8 @@ quad_vbo = glGenBuffers(1)
 glBindBuffer(GL_ARRAY_BUFFER, quad_vbo)
 glBufferData(GL_ARRAY_BUFFER, quad_vertices, GL_STATIC_DRAW)
 
-pos_loc = glGetAttribLocation(shader, "position")
-normal_loc = glGetAttribLocation(shader, "normal")
+pos_loc = 0
+normal_loc = 1
 glVertexAttribPointer(pos_loc, 3, GL_FLOAT, GL_FALSE, 24, ctypes.c_void_p(0))
 glVertexAttribPointer(normal_loc, 3, GL_FLOAT, GL_FALSE, 24, ctypes.c_void_p(12))
 glEnableVertexAttribArray(pos_loc)

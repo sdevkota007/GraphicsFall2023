@@ -65,7 +65,7 @@ if __name__ == '__main__':
     To use the ShaderProgram class, you need to first create a shader program object by passing the vertex shader and fragment shader
     The ShaderProgram class will compile the shaders and link them to a shader program object
     
-    shaderProgram = ShaderProgram("shaders/vert.glsl", "shaders/frag.glsl")
+    shaderProgram = ShaderProgram("shaders/vert_obj.glsl", "shaders/frag_obj.glsl")
     
     Then you can set the uniform variables in the shader program by using the following syntax:
                         shaderProgram["uniform_name"] = value

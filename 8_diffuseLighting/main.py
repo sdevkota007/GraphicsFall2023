@@ -71,11 +71,11 @@ glBindBuffer(GL_ARRAY_BUFFER, vbo)
 glBufferData(GL_ARRAY_BUFFER, obj.vertices.nbytes, obj.vertices, GL_STATIC_DRAW)
 
 # Configure vertex attributes for object 1
-position_loc = glGetAttribLocation(shaderProgram.shader, "position")
+position_loc = 0
 glVertexAttribPointer(position_loc, obj.size_position, GL_FLOAT, GL_FALSE, obj.stride, ctypes.c_void_p(obj.offset_position))
 glEnableVertexAttribArray(position_loc)
 
-normal_loc = glGetAttribLocation(shaderProgram.shader, "normal")
+normal_loc = 1
 glVertexAttribPointer(normal_loc, obj.size_normal, GL_FLOAT, GL_FALSE, obj.stride, ctypes.c_void_p(obj.offset_normal))
 glEnableVertexAttribArray(normal_loc)
 # *************************************************************************
@@ -87,7 +87,7 @@ gui = SimpleGUI("Assignment 7")
 # Create a slider for the rotation angle around the Z axis
 camera_rotY_slider = gui.add_slider("camera Y angle", -180, 180, 0, resolution=1)
 camera_rotX_slider = gui.add_slider("camera X angle", -90, 90, 0, resolution=1)
-fov_slider = gui.add_slider("fov", 25, 90, 45, resolution=1)
+fov_slider = gui.add_slider("fov", 25, 120, 45, resolution=1)
 
 
 material_color_picker = gui.add_color_picker("material color", initial_color=material_color)

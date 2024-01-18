@@ -82,7 +82,7 @@ glBufferData(GL_ARRAY_BUFFER,
 # *********** Define the vertex attribute configurations ***********
 # This is where we specify how the data is stored in the VBO.
 # For the position attribute
-position_loc = glGetAttribLocation(shader, "position")      # Get the index of the position attribute in the shader
+position_loc = 0
 glVertexAttribPointer(index=position_loc,           # Now we specify how the data is stored in the VBO for the position attribute
                       size=size_position,           # Specify the number of components per attribute: 3 for position (x, y, z)
                       type=GL_FLOAT,                # Specify the type of the components
@@ -93,7 +93,7 @@ glVertexAttribPointer(index=position_loc,           # Now we specify how the dat
 glEnableVertexAttribArray(position_loc)
 
 # For the normal attribute
-normal_loc = glGetAttribLocation(shader, "normal")    # Get the index of the normal attribute in the shader
+normal_loc = 1
 glVertexAttribPointer(normal_loc,                    # Now we specify how the data is stored in the VBO for the normal attribute
                       size=size_normal,
                       type=GL_FLOAT,
