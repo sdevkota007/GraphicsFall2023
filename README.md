@@ -3,7 +3,7 @@
 Gif:
 ![mp4](https://github.com/sdevkota007/media/blob/main/GraphicsFall2023/11_envMaping.mp4)
 
-https://github.com/sdevkota007/media/blob/main/GraphicsFall2023/11_envMaping.mp4
+https://github.com/sdevkota007/media/blob/main/GraphicsFall2023/11_envMaping
 
 Embedd video from another github repo:
 ```html
