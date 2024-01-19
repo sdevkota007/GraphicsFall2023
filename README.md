@@ -1,5 +1,21 @@
 # GraphicsFall2023
 
+A collection of open source Python OpenGL (PyOpenGL) examples and demos.
+
+## Installation
+
+Install the following packages:
+ - **PyOpenGL** 
+ - **PyOpenGL_accelerate** _(For faster OpenGL operations)_
+ - **PyGame** _(For windowing and input)_
+ - **Pyrr** _(For matrix and vector operations)_
+ - **Numpy** _(For array operations)_
+
+All of these packages can be installed using pip:
+```
+pip install pyopengl pyopengl-accelerate pygame pyrr numpy
+```
+
 ### 5. Translation
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/b09eb006-0f72-4347-8fad-e44b51f7ec26
 
