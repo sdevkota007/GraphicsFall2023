@@ -1,19 +1,30 @@
 # GraphicsFall2023
 
-Gif:
-![mp4](https://github.com/sdevkota007/media/blob/main/GraphicsFall2023/11_envMaping.mp4)
+### Translation
 
-https://github.com/sdevkota007/media/blob/main/GraphicsFall2023/11_envMaping
+### Self Orbiting Camera
 
-Embedd video from another github repo:
-```html
-<video controls="controls" name="11_envMaping" src="https://github.com/sdevkota007/media/blob/main/GraphicsFall2023/11_envMaping.mp4></video>
-```
+### Diffuse Lighting
 
-[11_envMaping.mp4](..%2F..%2FDocuments%2FCaptura%2FMedia%2FGraphicsFall2023%2F11_envMaping.mp4)
+### Environment Mapping
 
-Gif Large:
-![Gif](https://github.com/sdevkota007/media/blob/main/18_tessellationShader-Quad.gif)
+### Skybox
 
-Gif Large:
-![Gif](https://github.com/sdevkota007/media/blob/main/19_rayTracing-AABB.gif)
+### Stenciling
+
+### Shadow Projection
+
+### Framebuffer
+
+### Geometry Shader
+
+### Exploding Object
+
+### Tessellation Shader - Triangle
+
+### Tessellation Shader - Quad
+
+### RayTracing-AABB
+
+
+
