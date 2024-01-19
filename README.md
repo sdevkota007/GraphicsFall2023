@@ -65,8 +65,6 @@ https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/0e25757b-7f67-41
 
 
 ### Tessellation Shader - Quad
-
-
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/d561128b-755d-45dc-bcab-80248dbccaa4
 
 
