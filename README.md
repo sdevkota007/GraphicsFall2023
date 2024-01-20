@@ -20,6 +20,18 @@ pip install pyopengl pyopengl-accelerate pygame pyrr numpy
 
 Basic Examples:
 
+### 1. Pygame Window
+<img width="321" alt="1" src="https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/0512e388-e22f-47ac-aff9-63d02774d43d">
+
+### 2. Hello Triangle
+<img width="321" alt="2" src="https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/faa430fb-68f1-4bc1-a05f-9132c4dd464c">
+
+### 3. Quad and Triangle
+<img width="321" alt="3" src="https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/fdba8b3b-c0c5-4b22-acdb-fa0423689834">
+
+### 4. Teapot
+<img width="321" alt="4" src="https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/6b2b0d28-835e-4b3f-a088-79c358000c6e">
+
 ### 5. Translation
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/b09eb006-0f72-4347-8fad-e44b51f7ec26
 
