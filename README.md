@@ -1,4 +1,4 @@
-# GraphicsFall2023
+# OpenGL Examples
 
 A collection of open source Python OpenGL (PyOpenGL) examples and demos.
 
