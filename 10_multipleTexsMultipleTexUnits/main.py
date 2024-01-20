@@ -3,6 +3,7 @@ from OpenGL.GL import *
 import numpy as np
 import shaderLoaderV3
 from utils import load_image
+import guiV2
 
 # Initialize pygame
 pg.init()
@@ -111,6 +112,14 @@ shaderProgram["tex0"] = 0
 shaderProgram["tex1"] = 1
 
 
+# Create a GUI
+gui = guiV2.SimpleGUI("Test GUI")
+texid_radio_button = gui.add_radio_buttons(label_text="Pick a texture",
+                                           options_dict={"texture 1": 0,
+                                                         "texture 2": 1,
+                                                         "combined": 2},
+                                           initial_option="combined")
+
 
 # Run a loop to keep the program running
 draw = True
@@ -127,6 +136,9 @@ while draw:
     '''
     # ***** Select shader and set uniforms if you have them *****
     glUseProgram(shaderProgram.shader)  # Use the shader program
+
+    # ***** Set Uniforms *****
+    shaderProgram["texid"] = int(texid_radio_button.get_value())
 
     # Activate the texture units and bind the textures to them
     glActiveTexture(GL_TEXTURE0)

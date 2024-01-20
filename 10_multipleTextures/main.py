@@ -3,6 +3,7 @@ from OpenGL.GL import *
 import numpy as np
 import shaderLoaderV3  # Assuming you have a ShaderLoader module
 from utils import load_image
+import guiV2
 
 # Initialize pygame and create a window.
 pg.init()
@@ -117,6 +118,16 @@ shaderProgram["tex"] = 0   # Okay this might be confusing. Here 0 indicates text
 # glUniform1i(tex_loc, 0)
 
 
+# Create a GUI
+gui = guiV2.SimpleGUI("Test GUI")
+texid_radio_button = gui.add_radio_buttons(label_text="Pick a texture",
+                                           options_dict={"texture 1": 0,
+                                                         "texture 2": 1,
+                                                         "both": 2},
+                                           initial_option="both")
+
+
+
 # Set up the game loop.
 draw = True
 while (draw):
@@ -134,15 +145,28 @@ while (draw):
     # GPU's may have 16, 32, or even more texture units. Can be done only once outside the game loop since we are using only one texture unit.
     glActiveTexture(GL_TEXTURE0)
 
-    # Bind the correct texture to the active texture unit, bind the correct VAO, and draw the triangle.
-    glBindTexture(GL_TEXTURE_2D, texture1)
-    glBindVertexArray(triangle_vao)
-    glDrawArrays(GL_TRIANGLES, 0, len(triangle_vertices) // 6)
 
-    # Bind the correct texture to the active texture unit, bind the correct VAO, and draw the quad.
-    glBindTexture(GL_TEXTURE_2D, texture2)
-    glBindVertexArray(quad_vao)
-    glDrawArrays(GL_TRIANGLE_FAN, 0, len(quad_vertices) // 6)
+    if int(texid_radio_button.get_value()) == 0:
+        # Bind the correct texture to the active texture unit, bind the correct VAO, and draw the triangle.
+        glBindTexture(GL_TEXTURE_2D, texture1)
+        glBindVertexArray(triangle_vao)
+        glDrawArrays(GL_TRIANGLES, 0, len(triangle_vertices) // 6)
+
+    elif int(texid_radio_button.get_value()) == 1:
+        # Bind the correct texture to the active texture unit, bind the correct VAO, and draw the quad.
+        glBindTexture(GL_TEXTURE_2D, texture2)
+        glBindVertexArray(quad_vao)
+        glDrawArrays(GL_TRIANGLE_FAN, 0, len(quad_vertices) // 6)
+
+    elif int(texid_radio_button.get_value()) == 2:
+        # Bind the correct texture to the active texture unit, bind the correct VAO, and draw the quad.
+        glBindTexture(GL_TEXTURE_2D, texture1)
+        glBindVertexArray(triangle_vao)
+        glDrawArrays(GL_TRIANGLES, 0, len(triangle_vertices) // 6)
+
+        glBindTexture(GL_TEXTURE_2D, texture2)
+        glBindVertexArray(quad_vao)
+        glDrawArrays(GL_TRIANGLE_FAN, 0, len(quad_vertices) // 6)
 
     pg.display.flip()
 
