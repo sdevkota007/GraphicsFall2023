@@ -38,8 +38,20 @@ https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/b09eb006-0f72-43
 ### 6. Self Orbiting Camera
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/68d84634-dd8b-4073-9492-124f6fae0e35
 
+### 7. Multi Viewport
+<img width="641" alt="7" src="https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/0dc4ea36-6256-4fd5-8695-0538a5fd991d">
+
 ### 8. Diffuse Lighting
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/a75c7c64-0004-42ad-be05-cb9871403d00
+
+### 9. Texture
+<img width="321" alt="9" src="https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/08bd0733-db16-4b96-a424-82b02e1f9333">
+
+### 10. Multiple Textures Single Texture Unit
+https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/2b6d7ab8-649f-4f81-b844-09900f265f58
+
+### 10.1. Multiple Textures Multiple Texture Units
+https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/396db2c0-fdfe-476b-a1fe-1ddf82a76b80
 
 ### 11. Environment Mapping
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/86ef7dd2-d04f-4e8e-8d3d-852a7e8e5d01
@@ -65,7 +77,7 @@ https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/a4d7ce2c-edbf-41
 ### 18. Tessellation Shader - Triangle
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/0e25757b-7f67-4134-952b-b0a091a8ae9c
 
-### 18. Tessellation Shader - Quad
+### 18.1. Tessellation Shader - Quad
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/d561128b-755d-45dc-bcab-80248dbccaa4
 
 ### 19. RayTracing-AABB
