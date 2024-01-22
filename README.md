@@ -20,7 +20,7 @@ pip install pyopengl pyopengl-accelerate pygame pyrr numpy
 
 Basic Examples:
 
-### [1. Pygame Window](1_pygame_window/)
+### [1. Pygame Window](1_pygameWindow/)
 <img width="321" alt="1" src="https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/0512e388-e22f-47ac-aff9-63d02774d43d">
 
 ### [2. Hello Triangle](2_helloTriangle/)
