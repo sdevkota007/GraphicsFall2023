@@ -77,7 +77,7 @@ https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/a4d7ce2c-edbf-41
 ### [18. Tessellation Shader - Triangle](18_tessellationShader/)
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/0e25757b-7f67-4134-952b-b0a091a8ae9c
 
-### [18.1. Tessellation Shader - Quad](18_tessellationShader_Quad/)
+### [18.1. Tessellation Shader - Quad](18_tessellationShader-Quad/)
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/d561128b-755d-45dc-bcab-80248dbccaa4
 
 ### [19. RayTracing-AABB](19_rayTracing_AABB/)
