@@ -1,4 +1,4 @@
-# OpenGL Examples
+# OpenGL Basic Examples
 
 A collection of open source Python OpenGL (PyOpenGL) examples and demos.
 
@@ -16,9 +16,7 @@ All of these packages can be installed using pip:
 pip install pyopengl pyopengl-accelerate pygame pyrr numpy
 ```
 
-## Examples
-
-Basic Examples:
+## Basic Examples:
 
 ### [1. Pygame Window](1_pygameWindow/)
 <img width="321" alt="1" src="https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/0512e388-e22f-47ac-aff9-63d02774d43d">
@@ -84,4 +82,5 @@ https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/d561128b-755d-45
 https://github.com/sdevkota007/GraphicsFall2023/assets/25920123/2ccffeeb-a6a7-4e54-bd70-44ee8605149e
 
 
-More Examples are available here:
+### More Examples are available here: 
+https://github.com/sdevkota007/GraphicsFall2023-Assignments
